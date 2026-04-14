@@ -1,0 +1,14 @@
+# Generated experiment artifacts
+outputs/state_estimation_mvp/
+
+# Generated manifests/splits
+Data_files/text_only_manifest.csv
+Data_files/train_text_only_zeroshot.csv
+Data_files/val_text_only_zeroshot.csv
+Data_files/state_estimation_manifest.csv
+Data_files/train_state_estimation.csv
+Data_files/val_state_estimation.csv
+
+# Python cache
+**/__pycache__/
+*.pyc

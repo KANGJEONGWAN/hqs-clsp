@@ -1,0 +1,20 @@
+seed: 42
+device: cuda
+
+paths:
+  train_csv: Data_files/train_text_only_zeroshot.csv
+  val_csv: Data_files/val_text_only_zeroshot.csv
+  manifest_csv: Data_files/text_only_manifest.csv
+
+model:
+  text_model_name: distilbert-base-uncased
+  projection_dim: 256
+  projection_dropout: 0.1
+  reg_hidden_dim: 256
+
+train:
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  num_workers: 0
