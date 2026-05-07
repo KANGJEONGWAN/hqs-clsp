@@ -87,3 +87,24 @@ Default:
 - Zero-shot default split is context-signature holdout.
 - `cognitive_load_proxy` is derived from VADS `significance` with min-max style normalization on 1~5:
 	- `cognitive_load_proxy = (significance - 1) / 4`, clipped to `[0, 1]`
+
+## Multimodal extension (Text + PPG)
+
+New files for attaching a PPG branch without breaking text-only baseline:
+
+- `state_schema.py`: session-level single-value state schema + validator/signature
+- `step0_generate_synthetic_states.py`: synthetic session state generation
+- `ppg_features.py`: synthetic/engineered PPG feature builders
+- `step0_prepare_ppg_features.py`: create `Data_files/ppg_feature_manifest.csv`
+- `dataset_multimodal.py`: text + ppg feature dataset
+- `model_multimodal.py`: text branch + ppg branch + fusion head
+- `train_multimodal.py`: multimodal training with optional alignment loss
+- `config_multimodal.yaml`: multimodal config
+- `step9_multimodal_sanity_check.py`: one-batch multimodal sanity test
+
+Recommended multimodal run order:
+
+1. `python state_estimation_mvp/step0_generate_synthetic_states.py`
+2. `python state_estimation_mvp/step0_prepare_ppg_features.py --mode auto`
+3. `python state_estimation_mvp/step9_multimodal_sanity_check.py --config state_estimation_mvp/config_multimodal.yaml`
+4. `python state_estimation_mvp/train_multimodal.py --config state_estimation_mvp/config_multimodal.yaml --subset-ratio 0.1 --epochs 3`
