@@ -8,7 +8,7 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
-from text_context import build_text, validate_context, validate_context_text
+from text_context import build_text, validate_context, validate_context_text, context_from_state
 
 
 def _to_int(value: Any) -> int:
@@ -20,46 +20,53 @@ def _build_sample_id(participant_id: int, playlist_id: int, video_id: int) -> st
 
 
 def _context_from_cma(cma: str) -> dict[str, str]:
+    # EEVR 실험은 전원 VR 시청 세팅 (sitting/sedentary/low/0/passive_viewing 고정)
+    # CMA에 따라 environment와 temporal만 달라짐
     mapping: dict[str, dict[str, str]] = {
         "baseline": {
-            "physical": "resting",
-            "social": "alone",
-            "task": "observing",
-            "digital": "no interruption",
-            "environment": "quiet environment",
-            "temporal": "brief interaction",
+            "posture": "sitting",
+            "movement": "sedentary",
+            "social_engagement": "low",
+            "interpersonal_density": "0",
+            "device_interaction_behavior": "passive_viewing",
+            "environment": "quiet",
+            "temporal": "brief",
         },
         "lvla": {
-            "physical": "sitting",
-            "social": "alone",
-            "task": "observing",
-            "digital": "occasional interruptions",
+            "posture": "sitting",
+            "movement": "sedentary",
+            "social_engagement": "low",
+            "interpersonal_density": "0",
+            "device_interaction_behavior": "passive_viewing",
             "environment": "indoor",
-            "temporal": "intermittent interaction",
+            "temporal": "intermittent",
         },
         "lvha": {
-            "physical": "navigating",
-            "social": "socially engaged",
-            "task": "multi-step task",
-            "digital": "frequent interruptions",
-            "environment": "dynamic environment",
-            "temporal": "sustained interaction",
+            "posture": "sitting",
+            "movement": "sedentary",
+            "social_engagement": "low",
+            "interpersonal_density": "0",
+            "device_interaction_behavior": "passive_viewing",
+            "environment": "dynamic",
+            "temporal": "sustained",
         },
         "hvla": {
-            "physical": "walking",
-            "social": "in conversation",
-            "task": "interacting",
-            "digital": "high information density",
+            "posture": "sitting",
+            "movement": "sedentary",
+            "social_engagement": "low",
+            "interpersonal_density": "0",
+            "device_interaction_behavior": "passive_viewing",
             "environment": "outdoor",
-            "temporal": "sustained interaction",
+            "temporal": "sustained",
         },
         "hvha": {
-            "physical": "moving",
-            "social": "being observed",
-            "task": "multitasking",
-            "digital": "continuous interruptions",
-            "environment": "crowded environment",
-            "temporal": "continuous exposure",
+            "posture": "sitting",
+            "movement": "sedentary",
+            "social_engagement": "low",
+            "interpersonal_density": "0",
+            "device_interaction_behavior": "passive_viewing",
+            "environment": "crowded",
+            "temporal": "continuous",
         },
     }
 
@@ -158,24 +165,26 @@ def build_text_only_manifest(
             text = build_text(context)
             slot_rows.append(
                 {
-                    "physical_context": context["physical"],
-                    "social_context": context["social"],
-                    "task_context": context["task"],
-                    "digital_context": context["digital"],
-                    "environment_context": context["environment"],
-                    "temporal_context": context["temporal"],
+                    "posture":                     context["posture"],
+                    "movement":                    context["movement"],
+                    "social_engagement":           context["social_engagement"],
+                    "interpersonal_density":       context["interpersonal_density"],
+                    "device_interaction_behavior": context["device_interaction_behavior"],
+                    "environment":                 context["environment"],
+                    "temporal":                    context["temporal"],
                 }
             )
         else:
             text = raw
             slot_rows.append(
                 {
-                    "physical_context": "",
-                    "social_context": "",
-                    "task_context": "",
-                    "digital_context": "",
-                    "environment_context": "",
-                    "temporal_context": "",
+                    "posture": "",
+                    "movement": "",
+                    "social_engagement": "",
+                    "interpersonal_density": "",
+                    "device_interaction_behavior": "",
+                    "environment": "",
+                    "temporal": "",
                 }
             )
 
@@ -199,14 +208,15 @@ def build_text_only_manifest(
     )
 
     out["context_signature"] = out.apply(
-        lambda r: "|".join(
-            [
-                str(r["physical_context"]),
-                str(r["social_context"]),
-                str(r["task_context"]),
-                str(r["digital_context"]),
-            ]
-        ),
+        lambda r: "|".join([
+            str(r["posture"]),
+            str(r["movement"]),
+            str(r["social_engagement"]),
+            str(r["interpersonal_density"]),
+            str(r["device_interaction_behavior"]),
+            str(r["environment"]),
+            str(r["temporal"]),
+        ]),
         axis=1,
     )
 
@@ -220,12 +230,13 @@ def build_text_only_manifest(
             "participant_id",
             "playlist_id",
             "video_id",
-            "physical_context",
-            "social_context",
-            "task_context",
-            "digital_context",
-            "environment_context",
-            "temporal_context",
+            "posture",
+            "movement",
+            "social_engagement",
+            "interpersonal_density",
+            "device_interaction_behavior",
+            "environment",
+            "temporal",
             "context_signature",
             "context_valid",
             "context_issues",

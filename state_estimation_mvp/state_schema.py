@@ -4,10 +4,10 @@ from dataclasses import dataclass
 
 
 ALLOWED_STATE_VALUES: dict[str, list[str]] = {
-    "posture": ["standing", "sitting", "lying"],
-    "movement": ["stationary", "walking", "running", "sleep"],
-    "social_engagement": ["alone", "partner", "group"],
-    "relation": ["none", "friend", "family", "colleague", "stranger"],
+    "posture": ["standing", "sitting", "reclining", "lying"],
+    "movement": ["vigorous", "moderate", "light", "sedentary", "sleep"],
+    "social_engagement": ["low", "middle", "high"],
+    "interpersonal_density": ["0", "1", "2", "3"],
     "device_interaction_behavior": [
         "no_interaction",
         "passive_viewing",
@@ -25,7 +25,7 @@ class UserSessionState:
     posture: str
     movement: str
     social_engagement: str
-    relation: str
+    interpersonal_density: str
     device_interaction_behavior: str
     environment: str
     temporal: str
@@ -46,7 +46,7 @@ def state_signature(state: dict[str, str]) -> tuple[str, ...]:
         state["posture"],
         state["movement"],
         state["social_engagement"],
-        state["relation"],
+        state["interpersonal_density"],
         state["device_interaction_behavior"],
         state["environment"],
         state["temporal"],

@@ -4,7 +4,7 @@ device: cuda
 paths:
   text_train_csv: Data_files/train_text_only_zeroshot.csv
   text_val_csv: Data_files/val_text_only_zeroshot.csv
-  ppg_feature_csv: Data_files/ppg_feature_manifest.csv
+  ppg_feature_csv: Data_files/ppg_feature_manifest.csv  # ppg_embed_to_manifest.py로 생성 (N, 512)
 
 model:
   text_model_name: distilbert-base-uncased
