@@ -191,7 +191,7 @@ def build_text_only_manifest(
                     "device_interaction_behavior": "",
                     "environment": "",
                     "temporal": "",
-                    "digital_summary":             context.get("digital_summary", ""),  # 추가
+                    "digital_summary": "",  # context.get 대신 그냥 빈 문자열
                 }
             )
 
