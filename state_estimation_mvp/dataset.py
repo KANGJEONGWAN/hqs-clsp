@@ -31,6 +31,7 @@ def _context_from_cma(cma: str) -> dict[str, str]:
             "device_interaction_behavior": "passive_viewing",
             "environment": "quiet",
             "temporal": "brief",
+            "digital_summary": "",  # 추가
         },
         "lvla": {
             "posture": "sitting",
@@ -40,6 +41,7 @@ def _context_from_cma(cma: str) -> dict[str, str]:
             "device_interaction_behavior": "passive_viewing",
             "environment": "indoor",
             "temporal": "intermittent",
+            "digital_summary": "",  # 추가
         },
         "lvha": {
             "posture": "sitting",
@@ -49,6 +51,7 @@ def _context_from_cma(cma: str) -> dict[str, str]:
             "device_interaction_behavior": "passive_viewing",
             "environment": "dynamic",
             "temporal": "sustained",
+            "digital_summary": "",  # 추가
         },
         "hvla": {
             "posture": "sitting",
@@ -58,6 +61,7 @@ def _context_from_cma(cma: str) -> dict[str, str]:
             "device_interaction_behavior": "passive_viewing",
             "environment": "outdoor",
             "temporal": "sustained",
+            "digital_summary": "",  # 추가
         },
         "hvha": {
             "posture": "sitting",
@@ -67,6 +71,7 @@ def _context_from_cma(cma: str) -> dict[str, str]:
             "device_interaction_behavior": "passive_viewing",
             "environment": "crowded",
             "temporal": "continuous",
+            "digital_summary": "",  # 추가
         },
     }
 
@@ -172,6 +177,7 @@ def build_text_only_manifest(
                     "device_interaction_behavior": context["device_interaction_behavior"],
                     "environment":                 context["environment"],
                     "temporal":                    context["temporal"],
+                    "digital_summary":             context.get("digital_summary", ""),  # 추가
                 }
             )
         else:
@@ -185,6 +191,7 @@ def build_text_only_manifest(
                     "device_interaction_behavior": "",
                     "environment": "",
                     "temporal": "",
+                    "digital_summary":             context.get("digital_summary", ""),  # 추가
                 }
             )
 
@@ -237,6 +244,7 @@ def build_text_only_manifest(
             "device_interaction_behavior",
             "environment",
             "temporal",
+            "digital_summary",  # 추가
             "context_signature",
             "context_valid",
             "context_issues",
