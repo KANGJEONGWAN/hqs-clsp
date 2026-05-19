@@ -13,12 +13,24 @@ STATE_KEYS = [
     "posture",
     "movement",
     "social_engagement",
-    "relation",
     "device_interaction_behavior",
     "environment",
     "temporal",
 ]
 
+DIGITAL_SUMMARY_SAMPLES = [
+    # PC 패턴
+    "Coding in VSCode while switching between Chrome and browser for reference.",
+    "Reading research papers on Chrome and taking notes on Notion.",
+    "Browsing academic papers and switching between browser tabs frequently.",
+    "Writing code and searching documentation across multiple browser windows.",
+    "Checking Notion tasks while switching between VSCode and browser.",
+    # 모바일 패턴
+    "Watching YouTube videos for about a minute on mobile.",
+    "Searching on Naver for several minutes on mobile.",
+    "Briefly checking app settings on mobile.",
+    "Switching between YouTube and search apps on mobile.",
+]
 
 def main() -> None:
     parser = argparse.ArgumentParser()

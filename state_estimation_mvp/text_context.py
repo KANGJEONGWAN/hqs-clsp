@@ -64,6 +64,7 @@ class ContextFields:
     device_interaction_behavior: str = "passive_viewing"
     environment:                str = "indoor"
     temporal:                   str = "intermittent"
+    digital_summary:            str = ""  
 
 
 def validate_context(context: dict[str, str]) -> None:
@@ -92,7 +93,8 @@ def build_text(context: dict[str, str]) -> str:
         f"- Nearby people: {density_desc}\n"
         f"- Device interaction: {device_desc}\n"
         f"- Environment: {context['environment']}\n"
-        f"- Temporal pattern: {context['temporal']}\n\n"
+        f"- Temporal pattern: {context['temporal']}\n"
+        f"- Recent digital activity: {context.get('digital_summary', '')}\n\n"  # 추가
         f"Write one sentence describing this user's situational context."
     )
 

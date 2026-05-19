@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 ALLOWED_STATE_VALUES: dict[str, list[str]] = {
@@ -29,6 +29,7 @@ class UserSessionState:
     device_interaction_behavior: str
     environment: str
     temporal: str
+    digital_summary: str = ""  # LLM이 생성한 디지털 행동 요약 (선택적)
 
 
 def validate_state(state: dict[str, str]) -> None:
@@ -38,6 +39,7 @@ def validate_state(state: dict[str, str]) -> None:
         v = str(state[k]).strip()
         if v not in allowed:
             raise ValueError(f"[INVALID] {k}: {v}")
+    # digital_summary는 자유 텍스트라 값 검증 안 함
 
 
 def state_signature(state: dict[str, str]) -> tuple[str, ...]:
