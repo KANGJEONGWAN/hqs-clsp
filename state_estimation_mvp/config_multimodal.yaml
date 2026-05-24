@@ -22,4 +22,4 @@ train:
   learning_rate: 0.0001
   weight_decay: 0.01
   num_workers: 0
-  allow_missing_ppg: false
+  allow_missing_ppg: true
