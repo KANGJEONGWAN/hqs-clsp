@@ -18,6 +18,7 @@ def main() -> None:
     parser.add_argument("--use-raw-text", action="store_true")
     parser.add_argument("--keep-invalid-context", action="store_true")
     parser.add_argument("--split", choices=["zero-shot", "random"], default="zero-shot")
+    parser.add_argument("--digital-summary-jsonl", type=str, default=None)
     args = parser.parse_args()
 
     manifest = build_text_only_manifest(
@@ -26,6 +27,7 @@ def main() -> None:
         output_csv=args.manifest_csv,
         use_structured_context=not args.use_raw_text,
         drop_invalid_context=not args.keep_invalid_context,
+        digital_summary_jsonl=args.digital_summary_jsonl,
     )
 
     if args.split == "zero-shot":

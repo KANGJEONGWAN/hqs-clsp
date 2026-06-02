@@ -6,6 +6,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 import torch
+import json 
 from torch.utils.data import Dataset
 
 from text_context import build_text, validate_context, validate_context_text, context_from_state
@@ -87,6 +88,7 @@ def build_text_only_manifest(
     output_csv: str | Path,
     use_structured_context: bool = True,
     drop_invalid_context: bool = False,
+    digital_summary_jsonl: str | Path | None = None,
 ) -> pd.DataFrame:
     """
     Build text-only state-estimation manifest.
@@ -98,7 +100,13 @@ def build_text_only_manifest(
       digital_context, environment_context, temporal_context,
       context_signature
     """
-
+    # digital_summary 로드
+    digital_summary = ""
+    if digital_summary_jsonl and Path(digital_summary_jsonl).exists():
+        with open(digital_summary_jsonl, encoding="utf-8") as f:
+            record = json.loads(f.readline())
+            digital_summary = record.get("llm_summary", "")
+            
     text_df = pd.read_csv(text_csv)
     vads_df = pd.read_csv(vads_csv)
 
@@ -166,6 +174,7 @@ def build_text_only_manifest(
         raw = str(row["raw_text"])
         if use_structured_context:
             context = _context_from_cma(str(row["cma"]))
+            context["digital_summary"] = digital_summary
             validate_context(context)
             text = build_text(context)
             slot_rows.append(
