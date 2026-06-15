@@ -1,0 +1,7 @@
+{"timestamp":"2026-06-15T15:52:50.406","device_type":"android","app":"com.android.settings","title":"com.android.settings.SubSettings","duration_seconds":0,"event_type":"app_start"}
+{"timestamp":"2026-06-15T15:52:50.855","device_type":"android","app":"com.android.settings","title":"com.android.settings.SubSettings","duration_seconds":0.955,"event_type":"app_close"}
+{"timestamp":"2026-06-15T15:52:53.120","device_type":"android","app":"com.nhn.android.search","title":"com.nhn.android.search.universe.UniverseActivity","duration_seconds":0,"event_type":"app_start"}
+{"timestamp":"2026-06-15T15:57:56.870","device_type":"android","app":"com.nhn.android.search","title":"com.nhn.android.search.universe.UniverseActivity","duration_seconds":304.262,"event_type":"app_close"}
+{"timestamp":"2026-06-15T15:57:57.548","device_type":"android","app":"com.hqs.tracker","title":"com.hqs.tracker.MainActivity","duration_seconds":0,"event_type":"app_start"}
+{"timestamp":"2026-06-15T15:57:58.119","device_type":"android","app":"com.hqs.tracker","title":"com.hqs.tracker.MainActivity","duration_seconds":1.072,"event_type":"app_close"}
+{"timestamp":"2026-06-15T15:58:00.529","device_type":"android","app":"com.android.settings","title":"com.android.settings.SubSettings","duration_seconds":0,"event_type":"app_start"}

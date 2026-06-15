@@ -1,0 +1,6 @@
+{"timestamp": "2026-06-15T06:52:37.058000+00:00", "device_type": "pc", "app": "Code.exe", "title": "collector.py - HQS - Visual Studio Code", "url": "", "duration_seconds": 0.0, "event_type": "app_switch"}
+{"timestamp": "2026-06-15T06:52:37.058000+00:00", "device_type": "pc", "app": "Code.exe", "title": "collector.py - HQS - Visual Studio Code", "url": "", "duration_seconds": 11.256765, "event_type": "app_switch"}
+{"timestamp": "2026-06-15T06:52:49.765000+00:00", "device_type": "pc", "app": "chrome.exe", "title": "[UFC] 알렉스 페레이라 vs 시릴 간 - YouTube", "url": "https://www.youtube.com/watch?v=6pJIzYMb7mw", "duration_seconds": 0.0, "event_type": "app_switch"}
+{"timestamp": "2026-06-15T06:52:49.765000+00:00", "device_type": "pc", "app": "chrome.exe", "title": "[UFC] 알렉스 페레이라 vs 시릴 간 - YouTube", "url": "https://www.youtube.com/watch?v=6pJIzYMb7mw", "duration_seconds": 268.110611, "event_type": "app_switch"}
+{"timestamp": "2026-06-15T06:57:16.814000+00:00", "device_type": "pc", "app": "Code.exe", "title": "collector.py - HQS - Visual Studio Code", "url": "", "duration_seconds": 0.0, "event_type": "app_switch"}
+{"timestamp": "2026-06-15T06:57:16.814000+00:00", "device_type": "pc", "app": "Code.exe", "title": "collector.py - HQS - Visual Studio Code", "url": "", "duration_seconds": 1.840449, "event_type": "app_switch"}
