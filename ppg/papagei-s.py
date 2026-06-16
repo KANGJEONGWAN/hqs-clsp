@@ -2,7 +2,7 @@ import csv
 import numpy as np
 import torch
 import sys
-sys.path.append("D:/2026/test/papagei-foundation-model")
+sys.path.append("../papagei-foundation-model")
 
 from linearprobing.utils import load_model_without_module_prefix
 from models.resnet import ResNet1DMoE
